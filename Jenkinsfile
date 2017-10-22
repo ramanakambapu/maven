@@ -13,32 +13,21 @@ steps {
    sh 'mvn test'}
  }
 }
+   
 stage ('Installing Stage') {
 steps {
-
 withMaven(maven : 'apache-maven-3.5.0'){
-sh 'mvn install'
-
+sh 'mvn install'}
 }
-
-
 }
-
-}
+   
 stage ('Deployment Stage') {
-
 steps {
-
 withMaven(maven : 'apache-maven-3.5.0'){
-sh 'mvn deploy'
-
+sh 'mvn deploy'}
 }
-
-
 }
-
 }
-
 post {
 always {
 echo 'one way or another, Ihave finished'
@@ -58,5 +47,5 @@ echo 'Things were different before...'
 }
 
 }
-}
+
 }
