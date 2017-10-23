@@ -1,6 +1,5 @@
 pipeline {
 	agent any
-	
 	stages {
 		stage ('Compile Stage') {
 			steps {
@@ -9,7 +8,6 @@ pipeline {
 				}
 			}
 		}
-
 		stage ('Testing Stage') {
 			steps {
 				withMaven(maven : 'apache-maven-3.5.0'){
@@ -31,7 +29,7 @@ pipeline {
 				}
 			}				
 		}
-
+	}
 	post {
         	always {
 	            echo 'One way or another, I have finished'
@@ -49,6 +47,6 @@ pipeline {
 	        changed {
 	            echo 'Things were different before...'
 	        }
-	  }
+	  
 	}
 }
