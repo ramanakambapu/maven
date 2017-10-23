@@ -1,5 +1,6 @@
 pipeline {
 	agent any
+	
 	stages {
 		stage ('Compile Stage') {
 			steps {
@@ -8,6 +9,7 @@ pipeline {
 				}
 			}
 		}
+
 		stage ('Testing Stage') {
 			steps {
 				withMaven(maven : 'apache-maven-3.5.0'){
@@ -29,24 +31,14 @@ pipeline {
 				}
 			}				
 		}
-	}
+
 	post {
-        	always {
-	            echo 'One way or another, I have finished'
-	            deleteDir() /* clean up our workspace */
-	        }
-	        success {
-	            echo 'I succeeeded!'
-	        }
-	        unstable {
-	            echo 'I am unstable :/'
-	        }
-	        failure {
-	            echo 'I failed :('
-	        }
-	        changed {
-	            echo 'Things were different before...'
-	        }
-	  
+	    failure {
+	        mail to: 'kotharakesh12@gmail.com',
+	             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+	             body: "Something is wrong with ${env.BUILD_URL}"
+    		    }
+	      }
+
 	}
 }
