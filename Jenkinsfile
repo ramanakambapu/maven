@@ -31,7 +31,7 @@ pipeline {
 				}
 			}				
 		}
-
+	}
 	post {
 	    failure {
 	        mail to: 'kotharakesh12@gmail.com',
@@ -40,5 +40,5 @@ pipeline {
     		    }
 	      }
 
-	}
+	
 }
