@@ -2,7 +2,7 @@
 public class App {
 	public String Sample()
 	{
-		return "sample4";
+		return "sample program";
 	}
 
 }
